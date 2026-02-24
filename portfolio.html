@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deena Shek | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --accent: #22d3ee;
+            --bg: #030712;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text: #f8fafc;
+            --text-dim: #94a3b8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        body { 
+            background-color: var(--bg); 
+            color: var(--text); 
+            line-height: 1.6; 
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Subtle Animated Background Mesh */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.15) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* Modern Navigation */
+        nav { 
+            padding: 20px 0; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: sticky; 
+            top: 0; 
+            background: rgba(3, 7, 18, 0.8); 
+            backdrop-filter: blur(12px); 
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .logo { 
+            font-size: 1.5rem; 
+            font-weight: 800; 
+            background: linear-gradient(to right, var(--primary), var(--accent)); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+
+        .nav-links a { 
+            color: var(--text-dim); 
+            text-decoration: none; 
+            margin-left: 30px; 
+            font-size: 0.9rem; 
+            font-weight: 500;
+            transition: 0.3s; 
+        }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* Hero Section */
+        .hero { 
+            padding: 120px 0 80px; 
+            display: flex; 
+            align-items: center; 
+            gap: 60px; 
+            flex-wrap: wrap; 
+        }
+        .hero-content { flex: 1; min-width: 320px; }
+        
+        /* Updated Hero Image Style - No Outlines */
+.hero-image-container {
+    position: relative;
+}
+
+.hero-image { 
+    width: 320px; 
+    height: 320px; 
+    border-radius: 40px; /* Keeps the nice rounded corners */
+    object-fit: cover; 
+    position: relative;
+    z-index: 2;
+    border: none;      /* Removes the thin white line */
+    outline: none;     /* Removes the glow/outline */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3); /* Keeps a soft shadow for depth */
+}
+
+/* We leave this empty to remove the purple floating box */
+.hero-image-container::after {
+    display: none;
+}
+
+        .hero h1 { font-size: 4.5rem; line-height: 1; margin-bottom: 20px; font-weight: 800; }
+        .hero p { font-size: 1.2rem; color: var(--text-dim); margin-bottom: 40px; }
+
+        /* Buttons */
+        .btn-group { display: flex; gap: 15px; }
+        .btn { 
+            padding: 16px 32px; 
+            border-radius: 14px; 
+            text-decoration: none; 
+            font-weight: 700; 
+            transition: 0.4s; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+        .btn-primary { 
+            background: linear-gradient(135deg, var(--primary), var(--secondary)); 
+            color: white; 
+            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.5); 
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.6); }
+        
+        .btn-outline { 
+            background: rgba(255,255,255,0.03); 
+            color: var(--text); 
+            border: 1px solid rgba(255,255,255,0.1); 
+            backdrop-filter: blur(5px);
+        }
+        .btn-outline:hover { background: rgba(255,255,255,0.08); border-color: var(--primary); }
+
+        /* Section Styling */
+        section { padding: 100px 0; }
+        h2 { font-size: 2.5rem; margin-bottom: 50px; font-weight: 800; letter-spacing: -1px; }
+
+        /* Card System */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        
+        .card { 
+            background: var(--card-bg); 
+            padding: 40px; 
+            border-radius: 24px; 
+            border: 1px solid rgba(255,255,255,0.05); 
+            transition: 0.4s; 
+            backdrop-filter: blur(10px);
+        }
+        
+        .card:hover { 
+            transform: translateY(-10px); 
+            border-color: rgba(99, 102, 241, 0.4);
+            background: rgba(30, 41, 59, 0.9);
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);
+        }
+
+        .tag { 
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.15); 
+            color: var(--primary); 
+            padding: 4px 12px; 
+            border-radius: 8px; 
+            font-size: 0.75rem; 
+            font-weight: 700; 
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        /* Achievements List */
+        .list-item { 
+            background: rgba(255,255,255,0.03);
+            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .list-item:hover { background: rgba(99, 102, 241, 0.05); padding-left: 25px; }
+
+        /* Floating Social Bar */
+        .social-aside {
+            position: fixed;
+            left: 30px;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+        .social-aside::after {
+            content: "";
+            width: 1px;
+            height: 100px;
+            background: var(--text-dim);
+        }
+        .social-aside a { color: var(--text-dim); transition: 0.3s; text-decoration: none; font-size: 0.8rem; writing-mode: vertical-rl; margin-bottom: 10px;}
+        .social-aside a:hover { color: var(--primary); transform: translateY(-5px); }
+
+        footer { text-align: center; padding: 60px; color: var(--text-dim); border-top: 1px solid rgba(255,255,255,0.05); }
+
+        /* Animations */
+        [data-reveal] { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+        [data-reveal].visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .hero { text-align: center; flex-direction: column-reverse; }
+            .hero-image-container::after { display: none; }
+            .nav-links { display: none; }
+            .social-aside { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="social-aside">
+        <a href="https://github.com/DeenaShek">GITHUB</a>
+        <a href="https://linkedin.com/deenashek-x">LINKEDIN</a>
+        <a href="mailto:deenashekx@gmail.com">EMAIL</a>
+    </aside>
+
+    <div class="container">
+        <nav>
+            <div class="logo">DEENA SHEK</div>
+            <div class="nav-links">
+                <a href="#projects">Work</a>
+                <a href="#skills">Skills</a>
+                <a href="#achievements">Certifications</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+
+        <header class="hero">
+            <div class="hero-content">
+                <span class="tag" style="font-size: 0.9rem; letter-spacing: 2px;">Available for Internships</span>
+                <h1>Crafting Digital Experiences.</h1>
+                <p>Hi, I'm <b>Deena Shek</b>. An IT Enthusiast at Panimalar Engineering College focused on building high-performance Web and Android applications.</p>
+                
+                <div class="btn-group">
+                    <a href="resume.pdf" download="Deena_Shek_Resume" class="btn btn-primary">
+                        Download CV
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4m4-5l4 4 4-4m-4 4V3"></path></svg>
+                    </a>
+                    <a href="#contact" class="btn btn-outline">Let's Talk</a>
+                </div>
+            </div>
+            <div class="hero-image-container">
+                <img src="profile.jpg" alt="Deena Shek" class="hero-image">
+            </div>
+        </header>
+
+        <section id="projects" data-reveal>
+            <p style="color: var(--primary); font-weight: 700; margin-bottom: 10px;">MY PROJECTS</p>
+            <h2>Featured Work</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="tag">Sustainability</div>
+                    <h3>AgriVanguard</h3>
+                    <p>Revolutionizing waste management by connecting farmers with recyclers to boost profits and save the environment.</p>
+                </div>
+                <div class="card">
+                    <div class="tag">Community</div>
+                    <h3>HackNect</h3>
+                    <p>A specialized networking hub for hackers to find teammates and mentors for global competitions.</p>
+                </div>
+                <div class="card">
+                    <div class="tag">AI & Research</div>
+                    <h3>MY UI Shift</h3>
+                    <p>Innovating accessibility with eye-tracking technology that adapts interfaces to user cognitive states.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" data-reveal>
+            <h2>Technical Stack</h2>
+            <div class="grid">
+                <div class="card" style="border-left: 4px solid var(--primary);">
+                    <h3 style="margin-bottom: 20px;">Development</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                        <span class="tag">Java</span> <span class="tag">Python</span> 
+                        <span class="tag">C/C++</span> <span class="tag">Android Studio</span>
+                        <span class="tag">Web Dev</span> <span class="tag">Bootstrap</span>
+                    </div>
+                </div>
+                <div class="card" style="border-left: 4px solid var(--secondary);">
+                    <h3 style="margin-bottom: 20px;">Core & Tools</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                        <span class="tag">GitHub</span> <span class="tag">Data Science</span>
+                        <span class="tag">Cybersecurity</span> <span class="tag">Gen AI</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements" data-reveal>
+            <h2>Certifications</h2>
+            <div class="grid">
+                <div>
+                    <div class="list-item">
+                        <strong style="color: var(--primary);">First Place</strong><br>
+                        Paper Presentation - MY UI Shift
+                    </div>
+                    <div class="list-item">Oracle Certified - Generative AI</div>
+                    <div class="list-item">NASSCOM Data Science Associate</div>
+                </div>
+                <div>
+                    <div class="list-item">Acmegrade Cybersecurity Professional</div>
+                    <div class="list-item">Udemy Full Stack Web Development</div>
+                    <div class="list-item">Bits CAD C, C++ Certified</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" style="text-align: center; background: linear-gradient(rgba(99, 102, 241, 0.1), transparent); border-radius: 40px; padding: 100px 40px;" data-reveal>
+            <h2 style="margin-bottom: 20px;">Have a project in mind?</h2>
+            <p style="color: var(--text-dim); max-width: 600px; margin: 0 auto 40px;">I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
+            
+            <div class="btn-group" style="justify-content: center;">
+                <a href="mailto:deenashekx@gmail.com" class="btn btn-primary">Say Hello</a>
+                <a href="resume.pdf" download class="btn btn-outline">Download Resume</a>
+            </div>
+            
+            <div style="margin-top: 50px; display: flex; justify-content: center; gap: 40px; color: var(--text-dim); font-size: 0.9rem;">
+                <div><strong>Location</strong><br>Chennai, India</div>
+                <div><strong>Phone</strong><br>+91 8925100915</div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 Deena Shek</p>
+        </footer>
+    </div>
+
+    <script>
+        // Scroll Reveal Script
+        const revealElements = document.querySelectorAll('[data-reveal]');
+        const scrollReveal = function() {
+            for(let i = 0; i < revealElements.length; i++) {
+                if(revealElements[i].getBoundingClientRect().top < window.innerHeight / 1.15) {
+                    revealElements[i].classList.add('visible');
+                }
+            }
+        }
+        window.addEventListener('scroll', scrollReveal);
+        window.addEventListener('load', scrollReveal);
+    </script>
+</body>
+</html>
